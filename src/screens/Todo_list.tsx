@@ -21,9 +21,6 @@ import FloatingAction from '../components/floating_action';
 import {todoType} from '../utils/types/todo_list';
 
 const Todo_list = ({navigation}: any) => {
-  const [isDisable, setIsDisable] = useState(false);
-
-  //   redux data
   const todoList = useSelector((state: RootState) => state.todo.todoList);
   const dispatch = useDispatch();
 
@@ -40,8 +37,8 @@ const Todo_list = ({navigation}: any) => {
 
   return (
     <View style={styles.container}>
-      {/* todo list  */}
 
+      {/* Todo tasks list  */}
       <View style={styles.todoList}>
         <ScrollView showsVerticalScrollIndicator={false}>
           {todoList.map(
@@ -49,18 +46,18 @@ const Todo_list = ({navigation}: any) => {
               !item.status && (
                 <ListToDo
                   title={item.title}
-                  disabled={isDisable}
+                  disabled={false}
                   statusValue={item.status}
                   onChangeStatus={() => onChangeTaskStatus(item)}
                   key={index}
+                  testID='addToComplete'
                 />
               ),
           )}
         </ScrollView>
       </View>
 
-      {/* completed task  */}
-
+      {/* completed tasks list  */}
       <View style={[styles.todoList, styles.completeContainer]}>
         <Text style={styles.completeText}>Completed</Text>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -69,10 +66,11 @@ const Todo_list = ({navigation}: any) => {
               item.status && (
                 <ListToDo
                   title={item.title}
-                  disabled={isDisable}
+                  disabled={false}
                   statusValue={item.status}
                   onChangeStatus={() => onChangeTaskStatus(item)}
                   key={index}
+                  testID='addToComplete'
                 />
               ),
           )}
@@ -80,7 +78,7 @@ const Todo_list = ({navigation}: any) => {
       </View>
 
       {/* floating action  */}
-      <FloatingAction onAction={() => navigation.navigate('Addtodo')} />
+      <FloatingAction testID="addNewTask" onAction={() => navigation.navigate('Addtodo')} />
     </View>
   );
 };

@@ -9,11 +9,12 @@ import Plus from '../../assets/icons/Plus';
 
 type floatingProps={
   onAction:()=> void;
+  testID:string;
 }
 
-const floating_action:FC<floatingProps> = ({onAction}) => {
+const floating_action:FC<floatingProps> = ({onAction, testID}) => {
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.8} onPress={onAction}> 
+    <TouchableOpacity style={styles.container} activeOpacity={0.8} onPress={onAction} testID={testID}> 
       <Plus width={hp(4)} height={hp(4)} color={'#fff'}/>
     </TouchableOpacity>
   )

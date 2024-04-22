@@ -24,7 +24,7 @@ const inputTodo: FC<inputProps> = ({value, validError, onChangeTitle}) => {
           },
         ]}>
         <TextInput
-          placeholder="Add new todo.."
+          placeholder="Add new task.."
           placeholderTextColor={'#818181'}
           value={value}
           onChangeText={onChangeTitle}

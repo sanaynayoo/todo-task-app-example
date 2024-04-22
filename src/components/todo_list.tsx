@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import {
@@ -11,30 +11,24 @@ type todoListProps = {
   statusValue: boolean;
   onChangeStatus: () => void;
   title: string;
+  testID: string;
 };
 const todo_list: FC<todoListProps> = ({
   disabled,
   statusValue,
   onChangeStatus,
   title,
+  testID,
 }) => {
   return (
-    <TouchableOpacity
-      style={styles.container}
-      activeOpacity={0.8}
-      onPress={onChangeStatus}>
-      <CheckBox
-        disabled={disabled}
-        value={statusValue}
-        onChange={onChangeStatus}
-        tintColors={{true: '#3C87EB', false: '#3C87EB'}}
-      />
+    <TouchableOpacity style={styles.container} activeOpacity={0.8} testID={testID} onPress={onChangeStatus}>
+      <CheckBox disabled={disabled} value={statusValue} onChange={onChangeStatus} tintColors={{true: '#3C87EB', false: '#3C87EB'}}/>
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
   );
 };
 
-export default todo_list;
+export default memo(todo_list);
 
 const styles = StyleSheet.create({
   container: {

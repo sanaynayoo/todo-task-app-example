@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -8,7 +8,7 @@ import 'react-native-get-random-values';
 import {nanoid} from 'nanoid';
 
 // Redux
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 // Reducers
 import {addTodo} from '../store/reducers/todoReducers';
@@ -21,8 +21,6 @@ const Create_todo = ({navigation}: any) => {
   const [validStatus, setValidStatus] = useState(false);
 
   const dispatch = useDispatch();
-
-  console.log('Hello create::');
 
   const addNewTodo = () => {
     if (title !== '') {
@@ -43,17 +41,11 @@ const Create_todo = ({navigation}: any) => {
 
   return (
     <View style={styles.container}>
-      <AddTodo
-        validError={validStatus}
-        value={title}
-        onChangeTitle={value => setTitle(value)}
-      />
+      {/* input new todo task  */}
+      <AddTodo validError={validStatus}  value={title} onChangeTitle={value => setTitle(value)} />
 
       {/* submit action  */}
-      <TouchableOpacity
-        style={styles.addContainer}
-        activeOpacity={0.5}
-        onPress={addNewTodo}>
+      <TouchableOpacity style={styles.addContainer} activeOpacity={0.5} onPress={addNewTodo} testID="addNewTask">
         <Text style={styles.addTitle}>Add</Text>
       </TouchableOpacity>
     </View>
