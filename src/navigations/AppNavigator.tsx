@@ -1,10 +1,12 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {StyleSheet, Text, View, StatusBar} from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import BootSplash from "react-native-bootsplash";
 
 // navigation imports
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 
 // screens
 import Todo_list from '../screens/Todo_list';
@@ -14,6 +16,16 @@ import Create_todo from '../screens/Create_todo';
 const AppStack = createNativeStackNavigator();
 
 const AppNavigator = () => {
+  useEffect(() => {
+    const init = async () => {
+      // …do multiple sync or async tasks
+    };
+    init().finally(async () => {
+      await BootSplash.hide({ fade: true });
+      console.log("BootSplash has been hidden successfully");
+    });
+  }, []);
+
   return (
     <NavigationContainer>
       <AppStack.Navigator screenOptions={{
